@@ -9,11 +9,13 @@ import android.view.ViewGroup;
 
 import com.xmy.recylerviewdemo.R;
 import com.xmy.recylerviewdemo.bean.MyItemBean;
+import com.xmy.recylerviewdemo.listener.MyItemClickListener;
 import com.xmy.recylerviewdemo.viewholder.MyViewHolder;
 
 public class MyAdapter extends Adapter<MyViewHolder> {
 
 	private List<MyItemBean> mData;
+	private MyItemClickListener mItemClickListener;
 	
 	public MyAdapter(List<MyItemBean> data){
 		this.mData = data;
@@ -29,15 +31,20 @@ public class MyAdapter extends Adapter<MyViewHolder> {
 	public void onBindViewHolder(MyViewHolder holder, int position) {
 		MyItemBean bean = mData.get(position);
 		holder.tv.setText(bean.tv);
-//		holder.tv1.setText(bean.mainTxt);
-//		holder.tv2.setText(bean.subTxt);
 	}
 
 	@Override
 	public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent,false);
-		MyViewHolder vh = new MyViewHolder(itemView);
+		MyViewHolder vh = new MyViewHolder(itemView,mItemClickListener);
 		return vh;
 	}
 
+	/**
+	 * ÉèÖÃItemµã»÷¼àÌý
+	 * @param listener
+	 */
+	public void setOnItemClickListener(MyItemClickListener listener){
+		this.mItemClickListener = listener;
+	}
 }

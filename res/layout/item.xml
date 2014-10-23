@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:padding="10.0dip"
+    android:background="@drawable/item_xbg"
     android:orientation="vertical" >
     
     <ImageView 

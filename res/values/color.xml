@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="item_normal">#e5e5e6</drawable>
+    <drawable name="item_click">#A2A3A2</drawable>
+</resources>

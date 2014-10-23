@@ -9,14 +9,17 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.xmy.recylerviewdemo.adapter.MyAdapter;
 import com.xmy.recylerviewdemo.bean.MyItemBean;
 import com.xmy.recylerviewdemo.decoration.MyDecoration;
 import com.xmy.recylerviewdemo.layoutmanager.MyLayoutManager;
+import com.xmy.recylerviewdemo.listener.MyItemClickListener;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements MyItemClickListener{
 
 	private RecyclerView mRecyclerView;
 
@@ -52,6 +55,7 @@ public class MainActivity extends Activity {
 		this.mRecyclerView.setAdapter(mAdapter);
 		RecyclerView.ItemDecoration decoration = new MyDecoration(this);
 		this.mRecyclerView.addItemDecoration(decoration);
+		this.mAdapter.setOnItemClickListener(this);
 	}
 
 	@Override
@@ -79,5 +83,16 @@ public class MainActivity extends Activity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * Item click
+	 */
+	@Override
+	public void onItemClick(View view, int postion) {
+		MyItemBean bean = mData.get(postion);
+		if(bean != null){
+			Toast.makeText(this, bean.tv, Toast.LENGTH_SHORT).show();
+		}
 	}
 }
