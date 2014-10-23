@@ -18,8 +18,9 @@ import com.xmy.recylerviewdemo.bean.MyItemBean;
 import com.xmy.recylerviewdemo.decoration.MyDecoration;
 import com.xmy.recylerviewdemo.layoutmanager.MyLayoutManager;
 import com.xmy.recylerviewdemo.listener.MyItemClickListener;
+import com.xmy.recylerviewdemo.listener.MyItemLongClickListener;
 
-public class MainActivity extends Activity implements MyItemClickListener{
+public class MainActivity extends Activity implements MyItemClickListener,MyItemLongClickListener{
 
 	private RecyclerView mRecyclerView;
 
@@ -56,6 +57,7 @@ public class MainActivity extends Activity implements MyItemClickListener{
 		RecyclerView.ItemDecoration decoration = new MyDecoration(this);
 		this.mRecyclerView.addItemDecoration(decoration);
 		this.mAdapter.setOnItemClickListener(this);
+		this.mAdapter.setOnItemLongClickListener(this);
 	}
 
 	@Override
@@ -72,7 +74,7 @@ public class MainActivity extends Activity implements MyItemClickListener{
 		case R.id.action_add:
 			MyItemBean bean = new MyItemBean();
 			bean.tv = "Xmy"+(size);
-			mData.add(bean);
+			mData.add(1,bean);
 			mAdapter.notifyItemInserted(1);
 			break;
 		case R.id.action_remove:
@@ -93,6 +95,14 @@ public class MainActivity extends Activity implements MyItemClickListener{
 		MyItemBean bean = mData.get(postion);
 		if(bean != null){
 			Toast.makeText(this, bean.tv, Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	@Override
+	public void onItemLongClick(View view, int postion) {
+		MyItemBean bean = mData.get(postion);
+		if(bean != null){
+			Toast.makeText(this, "LongClick "+bean.tv, Toast.LENGTH_SHORT).show();
 		}
 	}
 }
