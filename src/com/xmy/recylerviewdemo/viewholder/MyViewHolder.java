@@ -34,7 +34,7 @@ public class MyViewHolder extends ViewHolder implements OnClickListener,OnLongCl
 	@Override
 	public void onClick(View v) {
 		if(mListener != null){
-			mListener.onItemClick(v,getPosition());
+			mListener.onItemClick(v,getLayoutPosition());
 		}
 	}
 
@@ -44,7 +44,7 @@ public class MyViewHolder extends ViewHolder implements OnClickListener,OnLongCl
 	@Override
 	public boolean onLongClick(View arg0) {
 		if(mLongClickListener != null){
-			mLongClickListener.onItemLongClick(arg0, getPosition());
+			mLongClickListener.onItemLongClick(arg0, getLayoutPosition());
 		}
 		return true;
 	}
